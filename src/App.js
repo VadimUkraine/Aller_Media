@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import './global/styles/index.css';
+import { routes } from './global/config/index';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const ArticlesTiles = lazy(() => import('./pages/ArticlesTiles'));
+const Titles = lazy(() => import('./pages/Titles'));
+const NotFound = lazy(() => import('./components/NotFound'));
+
+const App = () => (
+    <Router>
+      <Suspense fallback={<div data-testid="app-in-dom">Загрузка...</div>}>
+        <Switch>
+          <Route exact path={routes.main} component={ArticlesTiles} />
+          <Route exact path={routes.titles} component={Titles} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
+    </Router>
+);
 
 export default App;
