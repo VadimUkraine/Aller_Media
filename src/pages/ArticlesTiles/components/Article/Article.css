@@ -1,0 +1,106 @@
+.articles__row-cell{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.8rem;
+  position: relative;
+}
+
+.articles__row-cell-title{
+  margin-bottom: 0.8rem;
+  text-align: center;
+  width: 100%;
+}
+
+.articles__row-cell-btn-wrap{
+  padding: 5px;
+  margin-top: 0.8rem;
+  display: flex;
+}
+
+.articles__row-cell-btn-edit, .articles__row-cell-btn-delete{
+  cursor: pointer;
+  margin-right: 1rem;
+  width: 6rem;
+  height: 2rem;
+
+}
+
+.article-grid_3{
+  width: 25%;
+}
+
+.article-grid_4{
+  width: 33.33%;
+}
+
+.article-grid_5{
+  width: 41.66%;
+}
+
+.article-grid_6{
+  width: 50%;
+}
+
+
+.article-grid_7{
+  width: 58.33%;
+}
+
+.article-grid_8{
+  width: 66.66%;
+}
+
+.article-grid_9{
+  width: 75%;
+}
+
+.article-grid_12{
+  width: 100%;
+}
+
+.articles__row-cell-input-title{
+  width: 95%;
+  margin-bottom: 0.8rem;
+  height: 1.15rem;
+  border: 0;
+  border-bottom: 1px solid grey;
+}
+
+.article-prompt{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.65;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  opacity: 0.9;
+
+}
+
+.btn-reject-delete{
+  width: 7rem;
+  background-color: royalblue;
+  color: white;
+  height: 2.2rem;
+  border-radius: 11px;
+  cursor: pointer;
+  border: 1px solid royalblue;
+}
+
+.btn-reject-delete:hover{
+  opacity: 0.65;
+}
+
+@media (max-width: 900px) { 
+  .article-grid_3, .article-grid_4, 
+  .article-grid_5, .article-grid_6, 
+  .article-grid_7, .article-grid_8, 
+  .article-grid_9, .article-grid_12{
+    width: 18.75rem;
+  }
+}
