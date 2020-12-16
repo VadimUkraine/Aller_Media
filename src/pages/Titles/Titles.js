@@ -11,14 +11,12 @@ const Titles = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!articles.length) {
-      dispatch(getArticlesRequest());
-    }
-  }, [dispatch, articles]);
+    dispatch(getArticlesRequest());
+  }, [dispatch]);
 
   const titles = useMemo(() => (
     items.map((row) => (row.map((el) => (
-      { title: el.title, id: el.id }))))).flat(), [items]);
+      { title: el.title, id: el.id, url: el.url }))))).flat(), [items]);
 
   return (
     <div data-testid="titles-in-dom">

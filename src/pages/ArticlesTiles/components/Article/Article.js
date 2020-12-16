@@ -72,7 +72,9 @@ const Article = ({
 
   return (
     <div className={cn('articles__row-cell', getArticlesWidthClass(item.width))}>
-      { editTitleId !== item.id && (<p className="articles__row-cell-title">{item.title}</p>)}
+      { editTitleId !== item.id && (
+        <a target="_blank" rel="noreferrer" href={item.url} className="articles__row-cell-title">{item.title}</a>
+      )}
       { editTitleId === item.id && (<input
         type="text"
         className="articles__row-cell-input-title"
