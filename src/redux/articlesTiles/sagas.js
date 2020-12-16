@@ -17,15 +17,21 @@ import {
 } from './actions';
 import { articlesSelector } from './selectors';
 import DataService from '../../global/api/service';
+import { saveArticlesToLocalStorage, getArticlesFromLocalStorage } from './utils';
 
 export function* getArticlesSaga() {
   try {
-    const articles = yield select(articlesSelector);
-    if (!articles.length) {
+    const articlesFromLS = getArticlesFromLocalStorage();
+
+    if (!articlesFromLS) {
       const res = yield call(DataService.fetchData);
       const dataWithId = res[0].map((item) => (
         item.columns.map((el) => ({ ...el, id: uuidv4() }))));
       yield put(getArticlesRequestSuccess(dataWithId));
+      saveArticlesToLocalStorage(dataWithId);
+
+    } else {
+      yield put(getArticlesRequestSuccess(articlesFromLS));
     }
 
   } catch (err) {
@@ -50,6 +56,7 @@ export function* changeTitleSaga({ payload }) {
       })
     ));
     yield put(changeArticleTitleRequestSuccess(newData));
+    saveArticlesToLocalStorage(newData);
 
   } catch (err) {
     console.warn(err);
@@ -71,7 +78,7 @@ export function* deleteArticleSaga({ payload }) {
       }).filter(Boolean)
     ));
     yield put(deleteArticleRequestSuccess(newData));
-
+    saveArticlesToLocalStorage(newData);
   } catch (err) {
     console.warn(err);
     yield put(deleteArticleRequestFailure());

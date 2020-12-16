@@ -6,7 +6,7 @@ import ErrorMessage from '../../../../components/ErrorMessage';
 
 const TitlesManageContent = ({ titles, error }) => (
     <div className="titles-wrap">
-      {titles.map((el) => (<Title key={el.id} title={el.title}/>))}
+      {titles.map((el) => (<Title key={el.id} item={el}/>))}
       {error && <ErrorMessage/>}
     </div>
 );
